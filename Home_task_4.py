@@ -1,6 +1,5 @@
 import functools
-from math import degrees
-import re
+
 user_name = input("Введите ваш логин: ")
 admin_account = "400$"
 def decorator (account_balance):
