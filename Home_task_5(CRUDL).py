@@ -107,6 +107,7 @@ def new_user():
         if temp == 2:
             temp = "Ж"
             return temp
+
     user_gender = gender_request(user_gender)
     user_bmi = bmi_user_result(user_weight, user_growth)
     user_bmi_scale = bmi_scale(user_bmi)
@@ -201,7 +202,7 @@ def exit_or_continue ():
         input("Нажмите Ввод для выхода в глвное меню")
         step_main_menu(main_menu())
 
-# Функция выбора действия           
+# Функция выбора действия в главном меню           
 def step_main_menu(my_choice):
     if my_choice == 1:
         show_users_list()
