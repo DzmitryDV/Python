@@ -50,28 +50,30 @@ def main_menu():
         print ("4. Удалить пользователя")
         print ("5. Добавить пользователя")
         print ("6. Выйти")
-    temp = 0
-    while temp < 1 or temp > 6:
-        try:
-            menu()
-            temp = int(input("\nВведите пункт меню: "))
-            break
-        except:
-            system('cls')
-            print("Ошибка ввода! Нет такого пункта меню\n")
-            input("Нажмите Ввод для продолжения")
-    return temp
+        value_1 = input("\nВведите пункт меню: ")
+        return value_1
+    value_2 = menu()
 
-# Функция тестирования меню    
-def menu_test(test):
-    if test >= 1 and test <= 6:
-            return test
-    while test < 1 or test > 6:
+    # Функция на проверку ввода числа
+    def test_parametr (a):
+        while a != int:
+            try:
+                a = int(a)
+                break
+            except:
+                system('cls')
+                print("Ошибка ввода! Нужно вводить число\n")
+                input("Нажмите Ввод для продолжения")
+                a = menu()
+        return a
+    value_2 = test_parametr(value_2)
+    while value_2 < 1 or value_2 > 6:
         system('cls')
-        print ("\n Вы ввели не верное значение!")
-        temp = main_menu()
-        if temp >= 1 and temp <= 6:
-            return temp
+        print("Ошибка ввода! Нет такого пункта меню\n")
+        input("Нажмите Ввод для продолжения")
+        value_2 = menu()
+        value_2 = test_parametr(value_2)
+    return value_2
 
 # Функция добавления нового пользователя
 def new_user():
@@ -189,14 +191,15 @@ def del_user ():
 def exit_or_continue ():
     request = input("\nВернуться в главное меню? y/n:  ")
     if request == "y":
-            step_main_menu(menu_test(main_menu()))
+            step_main_menu(main_menu())
     elif request == "n":
         system('cls')
         print("Программа завершена")
     else:
         system('cls')
-        print("Ошибка ввода! \n")
-        step_main_menu(menu_test(main_menu()))
+        print("Вы ввели не верную команду! \n")
+        input("Нажмите Ввод для выхода в глвное меню")
+        step_main_menu(main_menu())
 
 # Функция выбора действия           
 def step_main_menu(my_choice):
@@ -218,5 +221,6 @@ def step_main_menu(my_choice):
     elif my_choice == 6:
         system('cls')
         print("\nПрограмма завершена\n\n")  
+    
 
-step_main_menu(menu_test(main_menu()))
+step_main_menu(main_menu())
