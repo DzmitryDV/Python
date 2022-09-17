@@ -41,13 +41,25 @@ def bmi_scale(a):
 
 # Функция Меню
 def main_menu():
-    print ("\n1. Посмотреть список пользователей")
-    print ("2. Посмотреть информацию о пользователе")
-    print ("3. Изменить информацию о пользователе")
-    print ("4. Удалить пользователя")
-    print ("5. Добавить пользователя")
-    print ("6. Выйти")
-    temp = int(input("\nСделайте ваш выбор: "))
+    def menu():
+        system('cls')
+        print ("\n       Главное меню:")
+        print ("\n1. Посмотреть список пользователей")
+        print ("2. Посмотреть информацию о пользователе")
+        print ("3. Изменить информацию о пользователе")
+        print ("4. Удалить пользователя")
+        print ("5. Добавить пользователя")
+        print ("6. Выйти")
+    temp = 0
+    while temp < 1 or temp > 6:
+        try:
+            menu()
+            temp = int(input("\nВведите пункт меню: "))
+            break
+        except:
+            system('cls')
+            print("Ошибка ввода! Нет такого пункта меню\n")
+            input("Нажмите Ввод для продолжения")
     return temp
 
 # Функция тестирования меню    
@@ -111,19 +123,28 @@ def show_users_list():
 
 # Функция вывода информации о пользователе
 def show_user_information():
-    system('cls')
-    print("Выберите пользователя из списка: ")
-    for login in users_dict:
-        print (f"Логин: {login}")
-    user_choice = input("\nВведите имя здесь: ")
+    def user_information():
+        system('cls')
+        print("\n\nВыберите пользователя из списка: \n")
+        for login in users_dict.keys():
+            print (f"Логин: {login}")
+        value = input("\nВведите имя здесь: ")
+        return value
+    user_choice = user_information()
+    if user_choice not in users_dict:
+        x = False
+        while x == False:
+            system('cls')
+            print(f"\n\nПользователя {user_choice} нет в базе")
+            input("\n\nНажмите Ввод для продолжжения")
+            user_choice = user_information()
+            x = user_choice in users_dict
     if user_choice in users_dict.keys():
         system('cls')
         print(f"\nИнформация о пользователе {user_choice}: ")
         for k, v in users_dict[user_choice].items():
             print (f"{k}: {v}")
-    else:
-        system('cls')
-        print("Такого пользователя не существует")
+    
 
 # Функция изменения информации о пользователе
 def edit_user_information ():
@@ -162,52 +183,40 @@ def del_user ():
         print(f"Пользователь {user_choice} успешно удален")
     else:
         system('cls')
-        print(f"Пользователя {user_choice} нет в базе")  
+        print(f"Пользователя {user_choice} нет в базе")
+
+# Функция "Продолжить" или "Завершить"
+def exit_or_continue ():
+    request = input("\nВернуться в главное меню? y/n:  ")
+    if request == "y":
+            step_main_menu(menu_test(main_menu()))
+    elif request == "n":
+        system('cls')
+        print("Программа завершена")
+    else:
+        system('cls')
+        print("Ошибка ввода! \n")
+        step_main_menu(menu_test(main_menu()))
 
 # Функция выбора действия           
 def step_main_menu(my_choice):
     if my_choice == 1:
         show_users_list()
-        request = input("\nЖелаете продолжить? y/n:  ")
-        if request == "y":
-            step_main_menu(menu_test(main_menu()))
-        elif request == "n":
-            system('cls')
-            print("Программа завершена")
+        exit_or_continue()
     elif my_choice == 2:
         show_user_information()
-        request = input("\nЖелаете продолжить? y/n:  ")
-        if request == "y":
-            step_main_menu(menu_test(main_menu()))
-        elif request == "n":
-            system('cls')
-            print("Программа завершена")
+        exit_or_continue()
     elif my_choice == 3:
         edit_user_information()
-        request = input("\nЖелаете продолжить? y/n:  ")
-        if request == "y":
-            step_main_menu(menu_test(main_menu()))
-        elif request == "n":
-            system('cls')
-            print("Программа завершена")
+        exit_or_continue()
     elif my_choice == 4:
         del_user()
-        request = input("\nЖелаете продолжить? y/n:  ")
-        if request == "y":
-            step_main_menu(menu_test(main_menu()))
-        elif request == "n":
-            system('cls')
-            print("Программа завершена")
+        exit_or_continue()
     elif my_choice == 5:
         new_user()
-        request = input("\nЖелаете продолжить? y/n:  ")
-        if request == "y":
-            step_main_menu(menu_test(main_menu()))
-        elif request == "n":
-            system('cls')
-            print("Программа завершена")
+        exit_or_continue()
     elif my_choice == 6:
         system('cls')
-        print("\nПрограмма завершена")      
+        print("\nПрограмма завершена\n\n")  
 
-step_main_menu(menu_test(main_menu()))    
+step_main_menu(menu_test(main_menu()))
