@@ -32,4 +32,4 @@ stroka = " ".join(rev_str)
 print (stroka, "\n")
 
 stroka = var
-print ("Шаг 8", "\n\n", stroka)
+print ("Шаг 8", "\n", stroka)
