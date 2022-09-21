@@ -155,6 +155,7 @@ def clock_color(q: str, i: int):
         if i == 69:
             i = 0
     return q, i
+    
 counter_1 = 0 # Счетчик для сепаратора
 counter_2 = 0 # Счетчик для изменения цвета
 
