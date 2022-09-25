@@ -1,7 +1,6 @@
 import datetime
 from os import system
 import time
-from functools import partial
 
 s = "\033[" +"101" + "m " + "\033[0m"
 x = " "
@@ -9,19 +8,18 @@ el_1 = s * 10 + x * 2
 el_2 = s * 2 + x * 6 + s * 2 + x * 2
 el_3 = x * 8 + s * 2 + x * 2
 el_4 = s * 2 + x
-
 new_dict = {
     "0": [el_1, el_2, el_2, el_2, el_2, el_2, el_1],
-    "1": [s * 6 + x * 6, x * 4 + el_4 * 6, x * 4 + el_4 * 6, x * 4 + el_4 * 6, x * 4 + el_4 * 6, x * 4 + el_4 * 6, s * 9 + x * 3],
-    "2": [el_1, el_3, el_3, el_1, el_4 * 10, el_4 * 10, el_1],
+    "1": [s * 6 + x * 6, x * 4 + s * 2 + x * 6, x * 4 + s * 2 + x * 6, x * 4 + s * 2 + x * 6, x * 4 + s * 2 + x * 6, x * 4 + s * 2 + x * 6, s * 9 + x * 3],
+    "2": [el_1, el_3, el_3, el_1, s * 2 + x * 10, s * 2 + x * 10, el_1],
     "3": [el_1, el_3, el_3, el_1, el_3, el_3, el_1],
     "4": [el_2, el_2, el_2, el_1, el_3, el_3, el_3],
-    "5": [el_1, el_4 * 8 + x * 2, el_4 * 8 + x * 2, el_1, el_3, el_3, el_1],
-    "6": [el_1, el_4 * 10, el_4 * 10, el_1, el_2, el_2, el_1],
+    "5": [el_1, s * 2 + x * 8 + x * 2, s * 2 + x * 8 + x * 2, el_1, el_3, el_3, el_1],
+    "6": [el_1, s * 2 + x * 10, s * 2 + x * 10, el_1, el_2, el_2, el_1],
     "7": [el_1, el_3, el_3, el_3, el_3, el_3, el_3],
     "8": [el_1, el_2, el_2, el_1, el_2, el_2, el_1],
     "9": [el_1, el_2, el_2, el_1, el_3, el_3, el_1],
-    ":": [x * 5, x + el_4 * 2, x + el_4 * 2, x * 5, x + el_4 * 2, x + el_4 * 2, x * 5],
+    ":": [x * 5, x + s * 2 + x * 2, x + s * 2 + x * 2, x * 5, x + s * 2 + x * 2, x + s * 2 + x * 2, x * 5],
     "w:": [x * 5, x * 5, x * 5, x * 5, x * 5, x * 5, x * 5]
 }
 
@@ -67,7 +65,7 @@ while True:
         lines = new_dict.get(i)           
         counter_1 += 1
         digit = new_clock(digit, lines)
-        if counter_1 == 2:                          # Здесь логика для сепаратора
+        if counter_1 == 2:                          # Логика для сепаратора
             digit = new_clock(digit, new_dict[":"])           
         if counter_1 == 4:                 
             digit = new_clock(digit, new_dict[":"])           
@@ -76,7 +74,7 @@ while True:
         if counter_1 == 10:                
             digit = new_clock(digit, new_dict["w:"])          
             counter_1 = -2                 
-        new_watch = "\n".join(digit)                 # Здесь преобразуем список в строку
-    new_watch, counter_2 = clock_color(new_watch, counter_2)
-    print(new_watch)   
+        apple_watch = "\n".join(digit)                 # Преобразуем список в строку
+    apple_watch, counter_2 = clock_color(apple_watch, counter_2)
+    print(apple_watch)   
     time.sleep(0.3)
