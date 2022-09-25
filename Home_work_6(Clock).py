@@ -128,7 +128,7 @@ def sep_1(value: list):
 # без сепаратора
 def sep_2(value: list):
     value[0] += "     "
-    value[1] += "   " + "  "
+    value[1] += "     "
     value[2] += "   " + "  "
     value[3] += "     "
     value[4] += "   " + "  "
