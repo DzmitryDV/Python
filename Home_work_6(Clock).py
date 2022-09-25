@@ -165,13 +165,12 @@ while True:
     s, counter_2 = clock_color(s, counter_2)
     lines = ["", "", "", "", "", "", ""]
     system("clear")
-    clock = datetime.datetime.now()
-    clock = clock.strftime("%H%M%S") # Приводим к сторовому типу >> "141552"
-    clock = list(clock)             # Приводим к типу список >> ["1", "4", "1", "5", "5", "2"]
-    clock = [int(i) for i in clock] # Преобразуем строковые элементы в инт >> [141552]
+    clock = datetime.datetime.now().strftime("%H%M%S") # Получаем время и приводим к сторовому типу >> "141552"
+    clock = list(clock)                                # Приводим к типу список >> ["1", "4", "1", "5", "5", "2"]
+    clock = [int(i) for i in clock]                    # Преобразуем строковые элементы в инт >> [141552]
 
     for i in clock:            # Проходимся циклом по списку, достаём цифру и закидываем в нужную функцию 
-        counter_1 = counter_1 + 1
+        counter_1 += 1
         if i == 0:
             digit = zero(lines)
         if i == 1:
